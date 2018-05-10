@@ -3,6 +3,8 @@ package net.slip.web;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -57,5 +59,26 @@ public class UserController {
 		System.out.println(user);
 		repo.save(user);
 		return "redirect:/users";
+	}
+	
+	@GetMapping("/loginForm")
+	public String loginForm() {
+		
+		return "/user/login";
+	}
+	
+	@PostMapping("/login")
+	public String login(String userId, String password,HttpSession session) {
+		User user = repo.findByUserId(userId);
+		if(user==null) {
+			return "redirect:/users/loginForm";
+		}
+		if(!password.equals(user.getPassword())) {
+			System.out.println("비밀번호 불일치");
+			return "redirect:/users/loginForm";
+		}
+		System.out.println("로그인 성공!");
+		session.setAttribute("user", user);
+		return "redirect:/";
 	}
 }
