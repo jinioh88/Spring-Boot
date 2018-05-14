@@ -53,5 +53,9 @@ public class User {
 		return "User [id=" + id + ", userId=" + userId + ", name=" + name + ", email=" + email + "]";
 	}
 	
-	
+	public boolean matchId(Long newId) {
+		if(newId==null) return false;
+		
+		return newId.equals(id);
+	}
 }

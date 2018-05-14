@@ -40,13 +40,22 @@ public class UserController {
 	}
 	
 	@GetMapping
-	public String list(Model model) {
+	public String list(Model model,HttpSession session) {
 		model.addAttribute("users",repo.findAll());
 		return "/user/list";
 	}
 	
-	@GetMapping("/{id}")
-	public String update(@PathVariable Long id,Model model) {
+	@GetMapping("/{id}/form")
+	public String updateForm(@PathVariable Long id,Model model,HttpSession session) {
+		Object tempUser = session.getAttribute(HttpSessionUtils.USER_SESSION_KEY);
+		if(HttpSessionUtils.isLoginUser(session)) {
+			return "redirect:/users/loginForm";
+		}
+		
+		User sessionUser = HttpSessionUtils.getUserFormSession(session);
+		if(!sessionUser.matchId(id))
+			throw new IllegalStateException("not matched User");
+		
 		model.addAttribute("user",repo.findOne(id));
 		return "/user/updateForm";
 	}
@@ -68,7 +77,7 @@ public class UserController {
 	}
 	
 	@PostMapping("/login")
-	public String login(String userId, String password,HttpSession session,Model model) {
+	public String login(String userId, String password,HttpSession session) {
 		User user = repo.findByUserId(userId);
 		if(user==null) {
 			return "redirect:/users/loginForm";
@@ -78,14 +87,14 @@ public class UserController {
 			return "redirect:/users/loginForm";
 		}
 		System.out.println("로그인 성공!");
-		session.setAttribute("idSession", user);
-		model.addAttribute("idSession",session);
+		session.setAttribute(HttpSessionUtils.USER_SESSION_KEY, user);
+		
 		return "redirect:/";
 	}
 	
 	@GetMapping("/logout")
 	public String logout(HttpSession session) {
-		User user = (User)session.getAttribute("user");
+		User user = (User)session.getAttribute("idSession");
 		System.out.println(user.getName()+" 로그아웃");
 		session.removeAttribute("idSession");
 		return "redirect:/";
