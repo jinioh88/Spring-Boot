@@ -28,6 +28,12 @@ public class Question {
 		this.title = title;
 		this.createDate = LocalDateTime.now();
 	}
+
+	public void update(String title, String contents) {
+		this.title = title;
+		this.contents = contents;
+		this.createDate = LocalDateTime.now();
+	}
 	
 	
 }

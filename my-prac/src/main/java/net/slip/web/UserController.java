@@ -94,9 +94,9 @@ public class UserController {
 	
 	@GetMapping("/logout")
 	public String logout(HttpSession session) {
-		User user = (User)session.getAttribute("idSession");
+		User user = (User)session.getAttribute(HttpSessionUtils.USER_SESSION_KEY);
 		System.out.println(user.getName()+" 로그아웃");
-		session.removeAttribute("idSession");
+		session.removeAttribute(HttpSessionUtils.USER_SESSION_KEY);
 		return "redirect:/";
 	}
 	
