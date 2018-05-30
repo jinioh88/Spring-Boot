@@ -50,6 +50,8 @@ public class QuestionController {
 	
 	@GetMapping("/{id}/form")
 	public String updateForm(@PathVariable Long id, Model model,HttpSession session) {
+		if(!HttpSessionUtils.isLoginUser(session))
+			return "/users/loginForm";
 		Question question = questionRepository.findOne(id);
 		
 		model.addAttribute("question",question);
