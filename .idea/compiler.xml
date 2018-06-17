@@ -3,6 +3,17 @@
   <component name="CompilerConfiguration">
     <annotationProcessing>
       <profile default="true" name="Default" enabled="true" />
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="entityvalid" />
+        <module name="my-prac" />
+        <module name="simple-jpa-spp" />
+        <module name="spring-boot-first" />
+        <module name="spring-boot-journal" />
+        <module name="spring-boot-simple" />
+      </profile>
     </annotationProcessing>
   </component>
 </project>
