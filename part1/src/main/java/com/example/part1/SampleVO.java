@@ -1,0 +1,14 @@
+package com.example.part1;
+
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
+
+@Getter
+@Setter
+@ToString
+public class SampleVO {
+    private String val1;
+    private String val2;
+    private String val3;
+}
