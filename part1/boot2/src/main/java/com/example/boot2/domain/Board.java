@@ -18,7 +18,7 @@ import java.sql.Timestamp;
 @Table(name="tbl_boards")
 public class Board {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long bno;
     private String writer;
     private String title;
