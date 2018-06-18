@@ -1,10 +1,8 @@
 package com.example.boot2.domain;
 
-import com.sun.tools.corba.se.idl.constExpr.Times;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
-import org.apache.logging.log4j.message.TimestampMessage;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 

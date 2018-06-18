@@ -17,10 +17,17 @@ public class BoardRepositoryTests {
     @Test
     public void testInsert() {
         Board board = new Board();
-        board.setTitle("게시물 제목");
+        board.setTitle("게시물 제목1");
         board.setContent("게시물 내용..");
-        board.setWriter("홍길동");
+        board.setWriter("홍길동1");
 
         boardRepository.save(board);
+    }
+
+    @Test
+    public void testRead() {
+        boardRepository.findById(1L).ifPresent((board)->{
+            System.out.println(board);
+        });
     }
 }
