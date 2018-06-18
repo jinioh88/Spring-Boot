@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.util.Optional;
+
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class BoardRepositoryTests {
@@ -29,5 +31,19 @@ public class BoardRepositoryTests {
         boardRepository.findById(1L).ifPresent((board)->{
             System.out.println(board);
         });
+    }
+
+//    @Test
+//    public void testUpdate() {
+//        System.out.println("Read First!");
+//        Optional<Board> board = boardRepository.findById(1L);
+//        board.ifPresent(board1 -> {board1.setTitle("수정된 제목입니다.");});
+//
+//        boardRepository.save(board.get());
+//    }
+
+    @Test
+    public void testDelete(){
+        boardRepository.deleteById(1L);
     }
 }
