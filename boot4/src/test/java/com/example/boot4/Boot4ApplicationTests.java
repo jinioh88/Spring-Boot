@@ -1,8 +1,11 @@
 package com.example.boot4;
 
 import com.example.boot4.domain.Member;
+import com.example.boot4.domain.PDSBoard;
+import com.example.boot4.domain.PDSFile;
 import com.example.boot4.domain.Profile;
 import com.example.boot4.persistence.MemberRepository;
+import com.example.boot4.persistence.PDSBaordRepository;
 import com.example.boot4.persistence.ProfileRepository;
 import lombok.extern.java.Log;
 import org.junit.Test;
@@ -27,6 +30,9 @@ public class Boot4ApplicationTests {
 
     @Autowired
     ProfileRepository profileRepository;
+
+    @Autowired
+    PDSBaordRepository pdsBaordRepository;
 
     @Test
     public void testInsert(){
@@ -63,5 +69,23 @@ public class Boot4ApplicationTests {
         List<Object[]> result = memberRepository.getMemberWirthProfileCount("user1");
 
         result.forEach(arr-> System.out.println(Arrays.toString(arr)));
+    }
+
+    @Test
+    public void testInsertPDS(){
+        PDSBoard pds = new PDSBoard();
+        pds.setPname("Document");
+
+        PDSFile file1 = new PDSFile();
+        file1.setPdsfile("file1.doc");
+
+        PDSFile file2 = new PDSFile();
+        file2.setPdsfile("file2.doc");
+
+        pds.setFiles(Arrays.asList(file1,file2));
+
+        log.info("try to save pds");
+
+        pdsBaordRepository.save(pds);
     }
 }
