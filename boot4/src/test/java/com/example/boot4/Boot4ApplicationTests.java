@@ -16,6 +16,7 @@ import org.springframework.test.annotation.Commit;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
@@ -130,5 +131,30 @@ public class Boot4ApplicationTests {
         Long fno = 2L;
         pdsBaordRepository.deletePDSFile(fno);
         log.info("dleelte!!");
+    }
+
+    @Test
+    public void insertDummies(){
+        List<PDSBoard> list = new ArrayList<>();
+        IntStream.range(1,100).forEach(i->{
+            PDSBoard pds = new PDSBoard();
+            pds.setPname("자료 "+i);
+
+            PDSFile file1 = new PDSFile();
+            file1.setPdsfile("file1.doc");
+
+            PDSFile file2 = new PDSFile();
+            file2.setPdsfile("file2.doc");
+
+            pds.setFiles(Arrays.asList(file1,file2));
+
+            list.add(pds);
+        });
+        pdsBaordRepository.saveAll(list);
+    }
+
+    @Test
+    public void viewSummary(){
+        pdsBaordRepository.getSummary().forEach(arr->log.info(Arrays.toString(arr)));
     }
 }
