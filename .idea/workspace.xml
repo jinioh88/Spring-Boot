@@ -2,8 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9b0a70e6-a031-44fa-8846-b28a4e72cf78" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/boot2/src/main/java/com/example/boot2/persistence/BoardRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/boot2/src/main/java/com/example/boot2/persistence/BoardRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/boot2/src/test/java/com/example/boot2/BoardRepositoryTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/boot2/src/test/java/com/example/boot2/BoardRepositoryTests.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/boot3/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/boot3/pom.xml" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/ex04/spring-boot-journal/target/" />
     <ignored path="$PROJECT_DIR$/jpaEx/target/" />
@@ -67,10 +66,10 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="ProjectPane" />
       <pane id="AndroidView" />
       <pane id="PackagesPane" />
       <pane id="Scope" />
+      <pane id="ProjectPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -186,11 +185,12 @@
       <workItem from="1529216020492" duration="167000" />
       <workItem from="1529293741998" duration="9000" />
       <workItem from="1529299679797" duration="23000" />
+      <workItem from="1529373506665" duration="83000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="449000" />
+    <option name="totallyTimeSpent" value="532000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1280" height="711" extended-state="6" />
@@ -216,7 +216,7 @@
       <window_info anchor="bottom" id="Version Control" order="7" />
       <window_info anchor="bottom" id="Spring" order="7" />
       <window_info anchor="bottom" id="Terminal" order="7" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.26171243" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2657512" />
       <window_info anchor="right" id="Bean Validation" order="3" />
       <window_info id="Web" order="2" side_tool="true" />
       <window_info anchor="right" id="Theme Preview" order="3" />
