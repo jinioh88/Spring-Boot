@@ -11,7 +11,7 @@ import javax.persistence.*;
 @Setter
 @ToString
 @Entity
-@Table(name="tbl_members")
+@Table(name="tbl_files")
 @EqualsAndHashCode(of="uid")
 public class PDSFile {
     @Id
