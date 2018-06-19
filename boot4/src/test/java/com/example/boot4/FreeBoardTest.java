@@ -9,6 +9,9 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.test.annotation.Commit;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.transaction.annotation.Transactional;
@@ -70,5 +73,21 @@ public class FreeBoardTest {
         reply.setBoard(board);
 
         replyRepository.save(reply);
+    }
+
+    @Test
+    public void testList1(){
+        Pageable page = PageRequest.of(0,10, Sort.Direction.DESC,"bno");
+        boardRepository.findByBnoGreaterThan(0L,page).forEach(board->{
+            log.info(board.getBno()+" : "+board.getTitle());
+        });
+    }
+
+    @Test
+    public void testList2(){
+        Pageable page = PageRequest.of(0,10,Sort.Direction.DESC,"bno");
+        boardRepository.findByBnoGreaterThan(0L,page).forEach(board->{
+            log.info(board.getBno()+" : "+board.getTitle()+ " : "+board.getReplies().size());
+        });
     }
 }

@@ -30,6 +30,6 @@ public class FreeBoard {
     @UpdateTimestamp
     private Timestamp updatedate;
 
-    @OneToMany(mappedBy = "board",cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "board",cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<FreeBoardReply> replies;
 }
