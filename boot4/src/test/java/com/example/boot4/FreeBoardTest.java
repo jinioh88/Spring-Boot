@@ -16,6 +16,7 @@ import org.springframework.test.annotation.Commit;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.IntStream;
@@ -83,11 +84,19 @@ public class FreeBoardTest {
         });
     }
 
+    @Transactional
     @Test
     public void testList2(){
         Pageable page = PageRequest.of(0,10,Sort.Direction.DESC,"bno");
         boardRepository.findByBnoGreaterThan(0L,page).forEach(board->{
             log.info(board.getBno()+" : "+board.getTitle()+ " : "+board.getReplies().size());
         });
+    }
+
+    @Test
+    public void testList3(){
+        Pageable page = PageRequest.of(0,10,Sort.Direction.DESC,"bno");
+
+        boardRepository.getPage(page).forEach(arr->log.info(Arrays.toString(arr)));
     }
 }
