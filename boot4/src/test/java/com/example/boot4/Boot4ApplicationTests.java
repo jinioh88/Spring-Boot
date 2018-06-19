@@ -12,6 +12,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.Commit;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.util.Arrays;
+import java.util.List;
 import java.util.stream.IntStream;
 
 @RunWith(SpringRunner.class)
@@ -54,5 +56,12 @@ public class Boot4ApplicationTests {
             profile1.setMember(member);
             profileRepository.save(profile1);
         }
+    }
+
+    @Test
+    public void testTechJoin(){
+        List<Object[]> result = memberRepository.getMemberWirthProfileCount("user1");
+
+        result.forEach(arr-> System.out.println(Arrays.toString(arr)));
     }
 }
