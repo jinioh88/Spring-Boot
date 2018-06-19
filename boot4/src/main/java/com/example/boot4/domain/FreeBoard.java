@@ -13,7 +13,7 @@ import java.util.List;
 
 @Getter
 @Setter
-@ToString
+@ToString(exclude = "replies")
 @Entity
 @Table(name="tbl_freeboards")
 @EqualsAndHashCode(of="bno")
@@ -30,6 +30,6 @@ public class FreeBoard {
     @UpdateTimestamp
     private Timestamp updatedate;
 
-    @OneToMany
+    @OneToMany(mappedBy = "board")
     private List<FreeBoardReply> replies;
 }
