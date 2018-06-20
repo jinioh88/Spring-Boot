@@ -1,13 +1,23 @@
 package com.example.boot5.controller;
 
+import com.example.boot5.domain.MemberVO;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+
+import java.lang.reflect.Member;
+import java.sql.Timestamp;
 
 @Controller
 public class SampleController {
     @GetMapping("/sample1")
     public void sample1(Model model){
         model.addAttribute("greeting","Hello World");
+    }
+
+    @GetMapping("/sample2")
+    public void sample2(Model model){
+        MemberVO vo = new MemberVO(123,"u00","p00","호일동",new Timestamp(System.currentTimeMillis()));
+        model.addAttribute("vo",vo);
     }
 }
