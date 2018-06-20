@@ -2,6 +2,7 @@ package com.example.boot6.controller;
 
 import com.example.boot6.domain.WebBoard;
 import com.example.boot6.persistence.WebBoardRepository;
+import com.example.boot6.vo.PageMaker;
 import com.example.boot6.vo.PageVO;
 import lombok.extern.java.Log;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +27,7 @@ public class WebBoardController {
         log.info(""+page);
         log.info(""+result);
 
-        model.addAttribute("result",result);
+        log.info("Total PAGE NUMBER : "+result.getTotalPages());
+        model.addAttribute("result",new PageMaker(result));
     }
 }
