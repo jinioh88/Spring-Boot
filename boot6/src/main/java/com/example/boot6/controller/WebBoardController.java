@@ -12,7 +12,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 @RequestMapping("/boards")
@@ -30,5 +32,21 @@ public class WebBoardController {
 
         log.info("Total PAGE NUMBER : "+result.getTotalPages());
         model.addAttribute("result",new PageMaker(result));
+    }
+
+    @GetMapping("/register")
+    public void registerGET(@ModelAttribute("vo") WebBoard vo){ // 파라미터 안넣어도 되지만, 나중 입력값 등 문제 대비...
+        log.info("register get");
+    }
+
+    @PostMapping("/register")
+    public String registerPOST(@ModelAttribute("vo") WebBoard vo, RedirectAttributes rttr){
+        log.info("register post");
+        log.info(""+vo);
+
+        repo.save(vo);
+        rttr.addFlashAttribute("msg","success");
+
+        return "redirect:/boards/list";
     }
 }
