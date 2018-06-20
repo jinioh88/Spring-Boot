@@ -11,6 +11,8 @@ public class PageVO {
 
     private int page;
     private int size;
+    private String keyword;
+    private String type;
 
     public PageVO(){
         this.page = 1;
@@ -36,5 +38,21 @@ public class PageVO {
     public Pageable makePageable(int direction, String...props){
         Sort.Direction dir = direction==0? Sort.Direction.DESC : Sort.Direction.ASC;
         return PageRequest.of(this.page-1, this.size,dir,props);
+    }
+
+    public String getKeyword() {
+        return keyword;
+    }
+
+    public void setKeyword(String keyword) {
+        this.keyword = keyword;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
 }
