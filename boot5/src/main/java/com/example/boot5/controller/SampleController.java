@@ -32,4 +32,13 @@ public class SampleController {
         }
         model.addAttribute("list",list);
     }
+
+    @GetMapping("/sample4")
+    public void sample4(Model model){
+        List<MemberVO> list = new ArrayList<>();
+        for(int i=0;i<10;i++){
+            list.add(new MemberVO(i,"u000"+i%3,"p0000"+i%3,"호일동"+i,new Timestamp(System.currentTimeMillis())));
+        }
+        model.addAttribute("list",list);
+    }
 }
