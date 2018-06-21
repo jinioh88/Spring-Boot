@@ -1,5 +1,6 @@
 package com.example.boot6.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
@@ -15,7 +16,7 @@ import java.sql.Timestamp;
 @Entity
 @Table(name="tbl_webreplies")
 @EqualsAndHashCode(of="rno")
-@ToString
+@ToString(exclude = "board")
 public class WebReply {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -28,4 +29,8 @@ public class WebReply {
     private Timestamp regdate;
     @UpdateTimestamp
     private Timestamp updatedate;
+
+    @JsonIgnore
+    @ManyToOne(fetch = FetchType.LAZY)
+    private WebBoard board;
 }
