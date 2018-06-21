@@ -64,14 +64,33 @@ public class WebBoardController {
 
     @PostMapping("/delete")
     public String delete(Long bno, PageVO vo, RedirectAttributes rttr){
-        log.info("delete bno : "+bno);
+
         repo.deleteById(bno);
         rttr.addFlashAttribute("msg","success");
         rttr.addAttribute("page",vo.getPage()); // addAttribute는 URL에 추가되 전송됨.
         rttr.addAttribute("size",vo.getSize());
         rttr.addAttribute("type",vo.getType());
         rttr.addAttribute("keyword",vo.getKeyword());
+        log.info("delete bno : "+bno);
+        return "redirect:/boards/list";
+    }
 
-        return "redirect:/board/list";
+    @PostMapping("/modify")
+    public String modifyPost(WebBoard board, PageVO vo, RedirectAttributes rttr){
+        log.info("Modify board : "+board);
+        repo.findById(board.getBno()).ifPresent(origin->{
+            origin.setTitle(board.getTitle());
+            origin.setContent(board.getContent());
+
+            repo.save(origin);
+            rttr.addFlashAttribute("msg","success");
+            rttr.addAttribute("bno",origin.getBno());
+        });
+        rttr.addAttribute("page",vo.getPage());
+        rttr.addAttribute("size",vo.getSize());
+        rttr.addAttribute("type",vo.getType());
+        rttr.addAttribute("keyword",vo.getKeyword());
+
+        return "redirect:/boards/view";
     }
 }
