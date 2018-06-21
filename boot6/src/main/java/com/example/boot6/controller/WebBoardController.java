@@ -49,4 +49,29 @@ public class WebBoardController {
 
         return "redirect:/boards/list";
     }
+
+    @GetMapping("/view")
+    public void view(Long bno, @ModelAttribute("pageVO")PageVO vo, Model model){
+        log.info("BNO : "+bno);
+        repo.findById(bno).ifPresent(board->model.addAttribute("vo",board));
+    }
+
+    @GetMapping("/modify")
+    public void modify(Long bno, @ModelAttribute("pageVO") PageVO vo, Model model){
+        log.info("Modify BNO: "+bno);
+        repo.findById(bno).ifPresent(board->model.addAttribute("vo",board));
+    }
+
+    @PostMapping("/delete")
+    public String delete(Long bno, PageVO vo, RedirectAttributes rttr){
+        log.info("delete bno : "+bno);
+        repo.deleteById(bno);
+        rttr.addFlashAttribute("msg","success");
+        rttr.addAttribute("page",vo.getPage()); // addAttribute는 URL에 추가되 전송됨.
+        rttr.addAttribute("size",vo.getSize());
+        rttr.addAttribute("type",vo.getType());
+        rttr.addAttribute("keyword",vo.getKeyword());
+
+        return "redirect:/board/list";
+    }
 }

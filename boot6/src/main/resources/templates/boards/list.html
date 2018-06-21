@@ -5,6 +5,9 @@
 <div layout:fragment="content">
 
 	<div class="panel-heading">List Page</div>
+	<div class="panel-body pull-right">
+		<h3><a class="label label-default " th:href="@{register}">글쓰기</a> </h3>
+	</div>
 	<div class="panel-body">
 		<div th:with="result=${result.result}">
 
@@ -99,7 +102,23 @@
                 formObj.find("[name='page']").val("1");
                 formObj.submit();
 			});
+
+            $(window).load(function () {
+                var msg = [[${msg}]];
+                if(msg=="success"){
+                    alert("글등록 성공!!");
+                    var stateObj = {msg:""};
+                }
+            });
         });
 
+        $(".boardLink").click(function (e) {
+			e.preventDefault();
+			var boardNo = $(this).attr("href");
+
+            formObj.attr("action","view");
+			formObj.append("<input type='hidden' name='bno' value='" +boardNo +"'>");
+			formObj.submit();
+        });
 	</script>
 </th:block>
