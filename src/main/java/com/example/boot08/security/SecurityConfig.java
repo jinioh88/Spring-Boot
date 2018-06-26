@@ -24,6 +24,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
         http.authorizeRequests().antMatchers("/guest/**").permitAll();
         http.authorizeRequests().antMatchers("/manager/**").hasRole("MANAGER");
-        http.formLogin();
+        http.authorizeRequests().antMatchers("/admin/**").hasRole("ADMIN");
+        http.formLogin().loginPage("/login");
+        http.exceptionHandling().accessDeniedPage("/accessDenied");
+        http.logout().logoutUrl("/logout").invalidateHttpSession(true);
     }
 }
