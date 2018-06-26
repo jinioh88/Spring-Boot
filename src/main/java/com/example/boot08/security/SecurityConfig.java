@@ -17,17 +17,20 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     javax.sql.DataSource dataSource;
 
     @Autowired
-    public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception{
-        log.info("build Auth global...");
+    CustomUsersService customUsersService;
 
-        String query1 = "select uid username, concat('{noop}',upw) password, true enable from tbl_members where uid=?";
-        String query2 = "select member uid, role_name role from tbl_member_roles where member=?";
-        auth.jdbcAuthentication()
-                .dataSource(dataSource)
-                .usersByUsernameQuery(query1)
-                .rolePrefix("ROLE_")
-                .authoritiesByUsernameQuery(query2);
-    }
+//    @Autowired
+//    public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception{
+//        log.info("build Auth global...");
+//
+//        String query1 = "select uid username, concat('{noop}',upw) password, true enable from tbl_members where uid=?";
+//        String query2 = "select member uid, role_name role from tbl_member_roles where member=?";
+//        auth.jdbcAuthentication()
+//                .dataSource(dataSource)
+//                .usersByUsernameQuery(query1)
+//                .rolePrefix("ROLE_")
+//                .authoritiesByUsernameQuery(query2);
+//    }
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
@@ -39,5 +42,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.formLogin().loginPage("/login");
         http.exceptionHandling().accessDeniedPage("/accessDenied");
         http.logout().logoutUrl("/logout").invalidateHttpSession(true);
+        http.userDetailsService(customUsersService);
     }
 }
