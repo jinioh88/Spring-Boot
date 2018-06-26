@@ -7,15 +7,26 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 
+import javax.activation.DataSource;
+
 @Log
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
+    javax.sql.DataSource dataSource;
+
+    @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception{
         log.info("build Auth global...");
 
-        auth.inMemoryAuthentication().withUser("manager").password("{noop}1111").roles("MANAGER");
+        String query1 = "select uid username, concat('{noop}',upw) password, true enable from tbl_members where uid=?";
+        String query2 = "select member uid, role_name role from tbl_member_roles where member=?";
+        auth.jdbcAuthentication()
+                .dataSource(dataSource)
+                .usersByUsernameQuery(query1)
+                .rolePrefix("ROLE_")
+                .authoritiesByUsernameQuery(query2);
     }
 
     @Override
