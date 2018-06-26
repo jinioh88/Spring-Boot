@@ -13,7 +13,7 @@ import java.sql.Timestamp;
 @Setter
 @ToString
 @Entity
-@Table(name="tbl_boards")
+@Table(name = "tbl_boards")
 public class Board {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

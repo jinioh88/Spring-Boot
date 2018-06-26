@@ -38,27 +38,27 @@ public class Boot4ApplicationTests {
     PDSBaordRepository pdsBaordRepository;
 
     @Test
-    public void testInsert(){
-        IntStream.range(1,101).forEach(i->{
+    public void testInsert() {
+        IntStream.range(1, 101).forEach(i -> {
             Member member = new Member();
-            member.setUid("user"+i);
-            member.setUpw("pw"+i);
-            member.setUname("사용자"+i);
+            member.setUid("user" + i);
+            member.setUpw("pw" + i);
+            member.setUname("사용자" + i);
 
             memberRepository.save(member);
         });
     }
 
     @Test
-    public void testInsertProfile(){
+    public void testInsertProfile() {
         Member member = new Member();
         member.setUid("user1");
 
-        for(int i=1;i<5;i++){
+        for (int i = 1; i < 5; i++) {
             Profile profile1 = new Profile();
-            profile1.setFname("face"+i+".jpg");
+            profile1.setFname("face" + i + ".jpg");
 
-            if(i==1){
+            if (i == 1) {
                 profile1.setCurrent(true);
             }
 
@@ -68,14 +68,14 @@ public class Boot4ApplicationTests {
     }
 
     @Test
-    public void testTechJoin(){
+    public void testTechJoin() {
         List<Object[]> result = memberRepository.getMemberWirthProfileCount("user1");
 
-        result.forEach(arr-> System.out.println(Arrays.toString(arr)));
+        result.forEach(arr -> System.out.println(Arrays.toString(arr)));
     }
 
     @Test
-    public void testInsertPDS(){
+    public void testInsertPDS() {
         PDSBoard pds = new PDSBoard();
         pds.setPname("Document");
 
@@ -85,7 +85,7 @@ public class Boot4ApplicationTests {
         PDSFile file2 = new PDSFile();
         file2.setPdsfile("file2.doc");
 
-        pds.setFiles(Arrays.asList(file1,file2));
+        pds.setFiles(Arrays.asList(file1, file2));
 
         log.info("try to save pds");
 
@@ -94,12 +94,12 @@ public class Boot4ApplicationTests {
 
     @Transactional
     @Test
-    public void testUpdateFilename(){
+    public void testUpdateFilename() {
         Long fno = 1L;
         String newName = "updateFile1-2.doc";
 
         int count = pdsBaordRepository.updatePDSFile(fno, newName);
-        log.info("update count: "+count);
+        log.info("update count: " + count);
     }
 
     @Transactional
@@ -107,7 +107,7 @@ public class Boot4ApplicationTests {
     public void testUpdateFilename2() {
         String newName = "updateFile2.doc";
         Optional<PDSBoard> result = pdsBaordRepository.findById(2L);
-        result.ifPresent(pds->{
+        result.ifPresent(pds -> {
             log.info("데이터가 존재");
             PDSFile target = new PDSFile();
             target.setFno(2L);
@@ -115,7 +115,7 @@ public class Boot4ApplicationTests {
 
             int idx = pds.getFiles().indexOf(target);
 
-            if(idx>-1){
+            if (idx > -1) {
                 List<PDSFile> list = pds.getFiles();
                 list.remove(idx);
                 list.add(target);
@@ -127,18 +127,18 @@ public class Boot4ApplicationTests {
 
     @Transactional
     @Test
-    public void deletePDSFIle(){
+    public void deletePDSFIle() {
         Long fno = 2L;
         pdsBaordRepository.deletePDSFile(fno);
         log.info("dleelte!!");
     }
 
     @Test
-    public void insertDummies(){
+    public void insertDummies() {
         List<PDSBoard> list = new ArrayList<>();
-        IntStream.range(1,100).forEach(i->{
+        IntStream.range(1, 100).forEach(i -> {
             PDSBoard pds = new PDSBoard();
-            pds.setPname("자료 "+i);
+            pds.setPname("자료 " + i);
 
             PDSFile file1 = new PDSFile();
             file1.setPdsfile("file1.doc");
@@ -146,7 +146,7 @@ public class Boot4ApplicationTests {
             PDSFile file2 = new PDSFile();
             file2.setPdsfile("file2.doc");
 
-            pds.setFiles(Arrays.asList(file1,file2));
+            pds.setFiles(Arrays.asList(file1, file2));
 
             list.add(pds);
         });
@@ -154,7 +154,7 @@ public class Boot4ApplicationTests {
     }
 
     @Test
-    public void viewSummary(){
-        pdsBaordRepository.getSummary().forEach(arr->log.info(Arrays.toString(arr)));
+    public void viewSummary() {
+        pdsBaordRepository.getSummary().forEach(arr -> log.info(Arrays.toString(arr)));
     }
 }

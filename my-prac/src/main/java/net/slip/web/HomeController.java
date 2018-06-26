@@ -9,12 +9,12 @@ import net.slip.domain.QuestionRepository;
 
 @Controller
 public class HomeController {
-	@Autowired
-	private QuestionRepository qrepo;
-	
-	@GetMapping("/")
-	public String home(Model model) {
-		model.addAttribute("question",qrepo.findAll());
-		return "index";
-	}
+    @Autowired
+    private QuestionRepository qrepo;
+
+    @GetMapping("/")
+    public String home(Model model) {
+        model.addAttribute("question", qrepo.findAll());
+        return "index";
+    }
 }

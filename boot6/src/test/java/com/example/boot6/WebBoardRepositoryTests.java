@@ -25,36 +25,36 @@ public class WebBoardRepositoryTests {
     WebBoardRepository repo;
 
     @Test
-    public void insertDummi(){
-        IntStream.range(0,100).forEach(i->{
+    public void insertDummi() {
+        IntStream.range(0, 100).forEach(i -> {
             WebBoard board = new WebBoard();
-            board.setTitle("Sampel"+i);
-            board.setContent("Content"+i);
-            board.setWriter("user0"+(i%10));
+            board.setTitle("Sampel" + i);
+            board.setContent("Content" + i);
+            board.setWriter("user0" + (i % 10));
 
             repo.save(board);
         });
     }
 
     @Test
-    public void testList1(){
-        Pageable pageable = PageRequest.of(0,20,Sort.Direction.DESC,"bno");
-        Page<WebBoard> result = repo.findAll(repo.makePredicate(null,null),pageable);
+    public void testList1() {
+        Pageable pageable = PageRequest.of(0, 20, Sort.Direction.DESC, "bno");
+        Page<WebBoard> result = repo.findAll(repo.makePredicate(null, null), pageable);
 
-        log.info("PAGE: "+result.getPageable());
-        result.getContent().forEach(board->{
-            log.info(""+board);
+        log.info("PAGE: " + result.getPageable());
+        result.getContent().forEach(board -> {
+            log.info("" + board);
         });
     }
 
     @Test
-    public void testList2(){
-        Pageable pageable = PageRequest.of(0,20,Sort.Direction.DESC,"bno");
-        Page<WebBoard> result = repo.findAll(repo.makePredicate("t","10"),pageable);
+    public void testList2() {
+        Pageable pageable = PageRequest.of(0, 20, Sort.Direction.DESC, "bno");
+        Page<WebBoard> result = repo.findAll(repo.makePredicate("t", "10"), pageable);
 
-        log.info("PAGE: "+result.getPageable());
-        result.getContent().forEach(board->{
-            log.info(""+board);
+        log.info("PAGE: " + result.getPageable());
+        result.getContent().forEach(board -> {
+            log.info("" + board);
         });
     }
 }

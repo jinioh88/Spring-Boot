@@ -15,8 +15,8 @@ import java.util.List;
 @Setter
 @ToString(exclude = "replies")
 @Entity
-@Table(name="tbl_freeboards")
-@EqualsAndHashCode(of="bno")
+@Table(name = "tbl_freeboards")
+@EqualsAndHashCode(of = "bno")
 public class FreeBoard {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -30,6 +30,6 @@ public class FreeBoard {
     @UpdateTimestamp
     private Timestamp updatedate;
 
-    @OneToMany(mappedBy = "board",cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "board", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<FreeBoardReply> replies;
 }

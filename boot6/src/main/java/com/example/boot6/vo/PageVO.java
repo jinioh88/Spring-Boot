@@ -14,30 +14,30 @@ public class PageVO {
     private String keyword;
     private String type;
 
-    public PageVO(){
+    public PageVO() {
         this.page = 1;
         this.size = DEFAULT_SIZE;
     }
 
-    public int getPage(){
+    public int getPage() {
         return page;
     }
 
-    public void setPage(int page){
-        this.page = page<0?1:page;
+    public void setPage(int page) {
+        this.page = page < 0 ? 1 : page;
     }
 
-    public int getSize(){
+    public int getSize() {
         return size;
     }
 
-    public void setSize(int size){
-        this.size = size<DEFAULT_SIZE || size > DEFAULT_MAX_SIZE?DEFAULT_SIZE:size;
+    public void setSize(int size) {
+        this.size = size < DEFAULT_SIZE || size > DEFAULT_MAX_SIZE ? DEFAULT_SIZE : size;
     }
 
-    public Pageable makePageable(int direction, String...props){
-        Sort.Direction dir = direction==0? Sort.Direction.DESC : Sort.Direction.ASC;
-        return PageRequest.of(this.page-1, this.size,dir,props);
+    public Pageable makePageable(int direction, String... props) {
+        Sort.Direction dir = direction == 0 ? Sort.Direction.DESC : Sort.Direction.ASC;
+        return PageRequest.of(this.page - 1, this.size, dir, props);
     }
 
     public String getKeyword() {

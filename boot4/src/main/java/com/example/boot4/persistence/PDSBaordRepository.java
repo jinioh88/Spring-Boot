@@ -7,7 +7,7 @@ import org.springframework.data.repository.CrudRepository;
 
 import java.util.List;
 
-public interface PDSBaordRepository extends CrudRepository<PDSBoard,Long> {
+public interface PDSBaordRepository extends CrudRepository<PDSBoard, Long> {
     @Modifying
     @Query("update from PDSFile f set f.pdsfile = ?2 where f.fno = ?1")
     int updatePDSFile(Long fno, String newFileName);

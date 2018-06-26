@@ -14,17 +14,18 @@ import com.example.spring.repository.JournalRepository;
 
 @Controller
 public class JournalController {
-	@Autowired
-	JournalRepository repo;
-	
-	@RequestMapping(value="/journal",produces = {MediaType.APPLICATION_JSON_UTF8_VALUE})
-	public @ResponseBody List<Journal> getJournal(){
-		return repo.findAll();
-	}
-	
-	@RequestMapping("/")
-	public String index(Model model) {
-		model.addAttribute("journal",repo.findAll());  // findAll -> JpaRepository 메서드
-		return "index";
-	}
+    @Autowired
+    JournalRepository repo;
+
+    @RequestMapping(value = "/journal", produces = {MediaType.APPLICATION_JSON_UTF8_VALUE})
+    public @ResponseBody
+    List<Journal> getJournal() {
+        return repo.findAll();
+    }
+
+    @RequestMapping("/")
+    public String index(Model model) {
+        model.addAttribute("journal", repo.findAll());  // findAll -> JpaRepository 메서드
+        return "index";
+    }
 }

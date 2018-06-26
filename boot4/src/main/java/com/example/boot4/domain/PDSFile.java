@@ -11,8 +11,8 @@ import javax.persistence.*;
 @Setter
 @ToString
 @Entity
-@Table(name="tbl_files")
-@EqualsAndHashCode(of="uid")
+@Table(name = "tbl_files")
+@EqualsAndHashCode(of = "uid")
 public class PDSFile {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

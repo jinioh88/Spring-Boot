@@ -14,7 +14,7 @@ import javax.persistence.Transient;
 public class Journal {
 
     @Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String title;
     private Date created;
@@ -23,13 +23,14 @@ public class Journal {
     @Transient
     private SimpleDateFormat format = new SimpleDateFormat("MM/dd/yyyy");
 
-    public Journal(String title, String summary, String date) throws ParseException{
+    public Journal(String title, String summary, String date) throws ParseException {
         this.title = title;
         this.summary = summary;
         this.created = format.parse(date);
     }
 
-    Journal() {}
+    Journal() {
+    }
 
     public Long getId() {
         return id;

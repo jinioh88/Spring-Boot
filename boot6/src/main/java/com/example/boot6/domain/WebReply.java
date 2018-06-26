@@ -14,8 +14,8 @@ import java.sql.Timestamp;
 @Getter
 @Setter
 @Entity
-@Table(name="tbl_webreplies")
-@EqualsAndHashCode(of="rno")
+@Table(name = "tbl_webreplies")
+@EqualsAndHashCode(of = "rno")
 @ToString(exclude = "board")
 public class WebReply {
     @Id

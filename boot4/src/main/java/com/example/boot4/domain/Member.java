@@ -13,8 +13,8 @@ import javax.persistence.Table;
 @Setter
 @ToString
 @Entity
-@Table(name="tbl_members")
-@EqualsAndHashCode(of="uid")
+@Table(name = "tbl_members")
+@EqualsAndHashCode(of = "uid")
 public class Member {
     @Id
     private String uid;

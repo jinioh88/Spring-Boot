@@ -28,7 +28,7 @@ public class BoardRepositoryTests {
 
     @Test
     public void testRead() {
-        boardRepository.findById(1L).ifPresent((board)->{
+        boardRepository.findById(1L).ifPresent((board) -> {
             System.out.println(board);
         });
     }
@@ -43,7 +43,7 @@ public class BoardRepositoryTests {
 //    }
 
     @Test
-    public void testDelete(){
+    public void testDelete() {
         boardRepository.deleteById(1L);
     }
 }

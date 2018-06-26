@@ -6,7 +6,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class MyPracApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(MyPracApplication.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(MyPracApplication.class, args);
+    }
 }

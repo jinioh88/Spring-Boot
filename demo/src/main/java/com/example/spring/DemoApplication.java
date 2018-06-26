@@ -11,15 +11,15 @@ import com.example.spring.repository.JournalRepository;
 @SpringBootApplication
 public class DemoApplication {
 
-	@Bean
-	InitializingBean saveData(JournalRepository repo) {
-		return()->{
-			repo.save(new Journal("스프링 부트","공부시작","04/25/2018"));
-			repo.save(new Journal("웹","설정","04/25/2018"));
-		};
-	}
-	
-	public static void main(String[] args) {
-		SpringApplication.run(DemoApplication.class, args);
-	}
+    @Bean
+    InitializingBean saveData(JournalRepository repo) {
+        return () -> {
+            repo.save(new Journal("스프링 부트", "공부시작", "04/25/2018"));
+            repo.save(new Journal("웹", "설정", "04/25/2018"));
+        };
+    }
+
+    public static void main(String[] args) {
+        SpringApplication.run(DemoApplication.class, args);
+    }
 }

@@ -14,8 +14,8 @@ import java.sql.Timestamp;
 @Setter
 @ToString(exclude = "board")
 @Entity
-@Table(name="tbl_free_replies", indexes = {@Index(unique = false, columnList = "board_bno")})
-@EqualsAndHashCode(of="rno")
+@Table(name = "tbl_free_replies", indexes = {@Index(unique = false, columnList = "board_bno")})
+@EqualsAndHashCode(of = "rno")
 public class FreeBoardReply {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

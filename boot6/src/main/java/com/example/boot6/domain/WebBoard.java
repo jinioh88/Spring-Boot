@@ -15,8 +15,8 @@ import java.util.List;
 @Getter
 @Setter
 @Entity
-@Table(name="tbl_webboards")
-@EqualsAndHashCode(of="bno")
+@Table(name = "tbl_webboards")
+@EqualsAndHashCode(of = "bno")
 @ToString(exclude = "replies")
 public class WebBoard {
     @Id

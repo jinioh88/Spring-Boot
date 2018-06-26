@@ -23,16 +23,16 @@ public class WebReplyRepositoryTests {
     WebReplyRepository repo;
 
     @Test
-    public void testInsert(){
+    public void testInsert() {
         Long[] arr = {304L, 303L, 300L};
-        Arrays.stream(arr).forEach(num->{
+        Arrays.stream(arr).forEach(num -> {
             WebBoard board = new WebBoard();
             board.setBno(num);
 
-            IntStream.range(0,10).forEach(i->{
+            IntStream.range(0, 10).forEach(i -> {
                 WebReply reply = new WebReply();
-                reply.setReplyer("replyer"+i);
-                reply.setReplyText("Reply..."+i);
+                reply.setReplyer("replyer" + i);
+                reply.setReplyText("Reply..." + i);
                 reply.setBoard(board);
 
                 repo.save(reply);

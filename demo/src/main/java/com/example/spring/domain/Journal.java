@@ -12,61 +12,62 @@ import javax.persistence.Transient;
 
 @Entity
 public class Journal {
-	
-	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
-	private Long id;
-	private String title;
-	private Date created;
-	private String summary;
-	
-	@Transient
-	private SimpleDateFormat format = new SimpleDateFormat("MM/dd/yyyy");
 
-	public Journal(String title, String summary, String date) throws ParseException {
-		this.created = format.parse(date);
-		this.title = title;
-		this.summary = summary;
-	}
-	
-	public Journal() {}
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
+    private String title;
+    private Date created;
+    private String summary;
 
-	public Long getId() {
-		return id;
-	}
+    @Transient
+    private SimpleDateFormat format = new SimpleDateFormat("MM/dd/yyyy");
 
-	public void setId(Long id) {
-		this.id = id;
-	}
+    public Journal(String title, String summary, String date) throws ParseException {
+        this.created = format.parse(date);
+        this.title = title;
+        this.summary = summary;
+    }
 
-	public String getTitle() {
-		return title;
-	}
+    public Journal() {
+    }
 
-	public void setTitle(String title) {
-		this.title = title;
-	}
+    public Long getId() {
+        return id;
+    }
 
-	public Date getCreated() {
-		return created;
-	}
+    public void setId(Long id) {
+        this.id = id;
+    }
 
-	public void setCreated(Date created) {
-		this.created = created;
-	}
+    public String getTitle() {
+        return title;
+    }
 
-	public String getSummary() {
-		return summary;
-	}
+    public void setTitle(String title) {
+        this.title = title;
+    }
 
-	public void setSummary(String summary) {
-		this.summary = summary;
-	}
+    public Date getCreated() {
+        return created;
+    }
 
-	@Override
-	public String toString() {
-		return "Journal [id=" + id + ", title=" + title + ", created=" + created + ", summary=" + summary + "]";
-	}
-	
-	
+    public void setCreated(Date created) {
+        this.created = created;
+    }
+
+    public String getSummary() {
+        return summary;
+    }
+
+    public void setSummary(String summary) {
+        this.summary = summary;
+    }
+
+    @Override
+    public String toString() {
+        return "Journal [id=" + id + ", title=" + title + ", created=" + created + ", summary=" + summary + "]";
+    }
+
+
 }
