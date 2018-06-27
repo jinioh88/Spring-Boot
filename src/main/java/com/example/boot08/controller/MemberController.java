@@ -27,6 +27,9 @@ public class MemberController {
     @PostMapping("/join")
     public String joinPost(@ModelAttribute("member")Member member){
         log.info("Member : "+member);
+        String encryptPw = pwEncoder.encode(member.getUpw());
+        member.setUpw(encryptPw);
+        repo.save(member);
         return "/member/joinResult";
     }
 }
