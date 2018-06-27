@@ -1,6 +1,7 @@
 package com.example.boot08.controller;
 
 import lombok.extern.java.Log;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -28,4 +29,12 @@ public class SampleController {
     public void forAdmin(){
         log.info("admin");
     }
+
+    @Secured({"ROLE_ADMIN"})
+    @RequestMapping("/adminSecret")
+    public void forAdminSecret(){
+        log.info("admin secret");
+    }
+
+
 }
