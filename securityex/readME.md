@@ -39,4 +39,15 @@
   - 인증 매니저를 이용해 인증 작업이 수행 된다.
   - 인증 매니저들은 인증/인가를 위한 UserDetailsService를 통해 필요한 정보를 가져온다.
   - UserDetails는 사용자의 정보+권한 정보들의 묶음이 들어있다. 
+  
+## 시큐리티 데이터베이스 연동
+  - 스프링 시큐리티가 데이터베이스 연동하는 방법은 다음 2가지가 있다.
+    1) 직접 SQL 등을 지정해 처리하는 방법.
+    2) 기존 작성 된 Repository나 서비스 객체들을 이용해 별도로 시큐리티 관련 서비스를 개발하는 방법.
+  - 사용자 정의 UserDetailsService 만들어보기
+    - 스프링 시큐리티가 필요한 객체는 org.springframework.securrity.core.userdtails.User' 타입 객체를 만든어 낸다.
+    - User 클래스는 UserDetails라는 인터페이스를 구현해 보다 상세히 사용자 정보를 처리한다.
+    - 모든 인증 매니저는 UserDetails 타입 객체를 반환하도록 구현하는데, 이를 커스터마이징하려면 UserDetailsService 인테퍼이스를 구현하고 이를 HttpSecurity객체가 사용할 수 있도록 지정하면 된다.
+    - 시큐리티 User 클래스는 username, password, Authority라는 정보만 이용한 생성자를 제공한다. 
+  
 
