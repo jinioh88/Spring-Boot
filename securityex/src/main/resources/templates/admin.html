@@ -1,10 +1,31 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 <head>
     <meta charset="UTF-8">
     <title>Admin</title>
 </head>
 <body>
 <h1>Index Page for Admin</h1>
+<hr/>
+<h3 sec:authentication="name">Spring security username</h3>
+<h3> [[${#authentication.name}]]</h3>
+<hr/>
+<p sec:authorize-url="/admin/aaa">
+    <a href="/admin/aaa">ADMIN AAA</a>
+</p>
+<p sec:authorize-url="/manager/aaa">
+    <a href="/manager/aaa">MANAGER AAA</a>
+</p>
+<hr/>
+<h1 sec:authorize="hasRole('ROLE_ADMIN')">
+    This content is ony for administrators.
+</h1>
+<div th:with="member=${#authentication.principal.member}">
+    <p>[[${member.uid}]]</p>
+    <p>[[${member.upw}]]</p>
+    <p>[[${member.uname}]]</p>
+</div>
+<div>[[${#authentication.principal.member.uname}]]</div>
 </body>
 </html>

@@ -9,7 +9,6 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 
 @Getter
@@ -20,7 +19,7 @@ public class ExSecurityUser extends User {
 
     public ExSecurityUser(Member member) {
         super(member.getUid(),"{noop}"+member.getUpw(),makeGrantedAutority(member.getRoles()));
-
+        this.member = member;
     }
 
     private static List<GrantedAuthority> makeGrantedAutority(List<MemberRole> roles) {

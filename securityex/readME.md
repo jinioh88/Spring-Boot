@@ -49,5 +49,12 @@
     - User 클래스는 UserDetails라는 인터페이스를 구현해 보다 상세히 사용자 정보를 처리한다.
     - 모든 인증 매니저는 UserDetails 타입 객체를 반환하도록 구현하는데, 이를 커스터마이징하려면 UserDetailsService 인테퍼이스를 구현하고 이를 HttpSecurity객체가 사용할 수 있도록 지정하면 된다.
     - 시큐리티 User 클래스는 username, password, Authority라는 정보만 이용한 생성자를 제공한다. 
+
+## 화면에 로그인한 사용자 정보 출력
+  - 스프링 시큐리티 정보를 타임리프에서 사용하기 위해선 Spring Security Dialect라는 것을 이용해야 한다. 
+  - 특정 권한을 가진 사용자에게만 버튼이나 링크가 보이도록 하는 기능은 authorize-url을 이용한다. 
+  - 특정 권한을 가진 사용자에게만 보여줘야할 내용이 있다면 hasRole() 표현식을 적용할 수 있다. 
+  - 실제 데이터 베이스상의 사용자 정보를 포함하는 경우에는 principal 속성을 이용해야 한다. 
+  - 로그인 된 정보는 #authentication.principal 내부에 존재한다. 
   
 
