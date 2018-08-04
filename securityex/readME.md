@@ -57,4 +57,18 @@
   - 실제 데이터 베이스상의 사용자 정보를 포함하는 경우에는 principal 속성을 이용해야 한다. 
   - 로그인 된 정보는 #authentication.principal 내부에 존재한다. 
   
+## 리멤버 미
+  - 스프링 시큐리티의 Remember-me 기능은 기본적으로 사용자가 로그인 했을 때 특정한 토큰 데이터를 2주간 유지되도록 쿠키를 생성한다. 
+  - remember-me는 로그아웃 시점에 같이 삭제 되 별도로 처리 안해도 된다.
+  - remember-me db에 보관하기
+    - JdbCTokenRepositoryImpl 이란 클래스를 이용한다.
+    >
+        create table persistent_logins(
+        username varchar(64) not null,
+        eries varchar(64) primary key, 
+        token varchar(64) not null,
+        last_ussed timestamp not null
+        );
+    - 위와 같이 테이블을 만들자.
+  
 
