@@ -10,6 +10,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.io.File;
+import java.util.UUID;
 
 import static java.io.File.createTempFile;
 import static java.io.File.separator;
@@ -28,17 +29,25 @@ public class UploadController {
     @RequestMapping(value = "/upload/uploadForm", method = RequestMethod.POST)
     public ModelAndView uploadForm(MultipartFile file, ModelAndView mav) throws Exception {
         logger.info("파일이름 : "+file.getOriginalFilename());
-        String saveName = file.getOriginalFilename();
-        File target = new File(uploadPath, saveName);
-        try{
-        FileCopyUtils.copy(file.getBytes(), target);
-        }catch(Exception e) {
-            e.printStackTrace();
-        }
+        String savedName = file.getOriginalFilename();
+        savedName = uploadFiles(savedName,file.getBytes());
 
         mav.setViewName("uploadResult.html");
-        mav.addObject("saveName",saveName);
+        mav.addObject("saveName",savedName);
 
         return mav;
+    }
+
+    //UUID 생성
+    private String uploadFiles(String originalName, byte[] fileData) throws Exception {
+        UUID uuid = UUID.randomUUID();
+        String saveName = uuid.toString()+"_"+originalName;
+        File target = new File(uploadPath,saveName);
+        try{
+        FileCopyUtils.copy(fileData,target);
+        } catch(Exception e) {
+            e.printStackTrace();
+        }
+        return saveName;
     }
 }
