@@ -1,0 +1,40 @@
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+
+
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <!------ Include the above in your HEAD tag ---------->
+</head>
+<body id="LoginForm">
+<div class="container">
+    <h1 class="form-heading">login Form</h1>
+    <div class="login-form">
+        <div class="main-div">
+            <div class="panel">
+                <h2>Admin Login</h2>
+                <p>Please enter your email and password</p>
+            </div>
+            <form method="post" id="Logout">
+
+                <h3>Logout</h3>
+                <p>
+                    <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
+                </p>
+
+                <button type="submit" class="btn btn-primary">Logout</button>
+
+            </form>
+        </div>
+        <p class="botto-text"> Designed by Sunil Rajput</p>
+    </div></div></div>
+
+
+</body>
+</html>
