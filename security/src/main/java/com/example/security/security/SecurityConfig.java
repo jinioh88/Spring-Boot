@@ -1,18 +1,26 @@
 package com.example.security.security;
 
 import lombok.extern.java.Log;
+import org.hibernate.engine.jdbc.connections.internal.DatasourceConnectionProviderImpl;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.web.authentication.rememberme.JdbcTokenRepositoryImpl;
+import org.springframework.security.web.authentication.rememberme.PersistentTokenRepository;
 
 import javax.sql.DataSource;
 
 @Log
 @EnableWebSecurity
+@EnableGlobalMethodSecurity(securedEnabled = true)
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     ExUserService userService;
+
+    @Autowired
+    DataSource dataSource;
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
@@ -22,9 +30,17 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/admin/**").hasRole("ADMIN").and()
                 .formLogin().loginPage("/login").and()
                 .exceptionHandling().accessDeniedPage("/accessDenied").and()
-                .logout().logoutUrl("/logout").invalidateHttpSession(true).and()
-                .userDetailsService(userService);
+                .rememberMe().key("ex").userDetailsService(userService).tokenRepository(getJDBCRepository())
+                .tokenValiditySeconds(60*60*24).and()
+                .logout().logoutUrl("/logout").invalidateHttpSession(true);
+//                .userDetailsService(userService);
 
+    }
+
+    private PersistentTokenRepository getJDBCRepository() {
+        JdbcTokenRepositoryImpl repository = new JdbcTokenRepositoryImpl();
+        repository.setDataSource(dataSource);
+        return repository;
     }
 
 //    @Autowired

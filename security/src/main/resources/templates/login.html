@@ -14,14 +14,13 @@
 </head>
 <body id="LoginForm">
 <div class="container">
-    <h1 class="form-heading">login Form</h1>
+    <h1 class="form-heading">로그인</h1>
     <div class="login-form">
         <div class="main-div">
             <div class="panel">
-                <h2>Admin Login</h2>
-                <p>Please enter your email and password</p>
+                <p>id와 암호를 입력하세요</p>
             </div>
-            <form method="post" id="Login">
+            <form method="post" id="ex">
 
                 <div class="form-group">
 
@@ -36,16 +35,17 @@
 
                 </div>
                 <p>
+                    <label for="remember-me">Remember-Me</label> <input type="checkbox" id="remember-me"
+                                                                        name="remember-me"/>
+                </p>
+                <p>
                     <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
                 </p>
-                <div class="forgot">
-                    <a href="reset.html">Forgot password?</a>
-                </div>
                 <button type="submit" class="btn btn-primary">Login</button>
 
             </form>
         </div>
-        <p class="botto-text"> Designed by Sunil Rajput</p>
+        <p class="botto-text"> 시시콜콜 낚시 커뮤니티</p>
     </div></div></div>
 
 
