@@ -29,7 +29,7 @@ public class Member {
     @UpdateTimestamp
     private LocalDateTime updatedate;
 
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "member")
     private List<MemberRole> roles;
 }
