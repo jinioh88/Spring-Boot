@@ -14,20 +14,41 @@ apply plugin: 'java'
 apply plugin: 'eclipse'
 apply plugin: 'idea'
 apply plugin: 'org.akhikhl.gretty'
-apply plugin: 'war'
+//apply plugin: 'war'
 
-sourceCompatibility = 1.8
-targetCompatibility = 1.8
+compileJava {
+    sourceCompatibility = 1.8
+    targetCompatibility = 1.8
+}
+
+compileTestJava {
+    sourceCompatibility = 1.8
+    targetCompatibility = 1.8
+}
 
 repositories {
     jcenter()
 }
 
 compileJava.options.encoding = 'UTF-8'
+compileTestJava.options.encoding = 'UTF-8'
+
+ext {
+    javaVersion = '1.8'
+    springVersion = '4.1.6.RELEASE'
+    slfjVersion = '1.7.5'
+    logbackVersion = '1.0.13'
+}
+
+List springLib = [
+        "org.springframework:spring-core:${springVersion}",
+        "org.springframework:spring-context:${springVersion}",
+]
 
 dependencies {
 // https://mvnrepository.com/artifact/javax.servlet/javax.servlet-api
-    providedCompile group: 'javax.servlet', name: 'javax.servlet-api', version: '3.1.0'
+//    providedCompile group: 'javax.servlet', name: 'javax.servlet-api', version: '3.1.0'
+    compile springLib
     compile 'org.slf4j:slf4j-api:1.7.7'
     testCompile 'junit:junit:4.12'
 }
