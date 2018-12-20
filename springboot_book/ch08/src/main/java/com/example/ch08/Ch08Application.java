@@ -1,13 +1,14 @@
-package com.example.ch04;
+package com.example.ch08;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class Ch04Application {
+public class Ch08Application {
 
     public static void main(String[] args) {
-        SpringApplication.run(Ch04Application.class, args);
-
+        SpringApplication.run(Ch08Application.class, args);
     }
+
 }
+
